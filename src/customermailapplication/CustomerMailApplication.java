@@ -18,40 +18,45 @@ public class CustomerMailApplication {
      * @param args the command line arguments
      */
     private Customer customer;
-    public void getCustomerTypeFromUser(String customerType) {
-        switch(customerType) {
-            case "Regular":
-                customer = new RegularCustomer();
-                break;
-            case "Mountain":
-                customer = new MountainCustomer();
-                break;
-            case "Delinquent":
-                customer = new DelinquentCustomer();
-                break;
-        }
-    }
-    public String generateMail() {
-        return customer.createMail();
-    }
+    // public void getCustomerTypeFromUser(String customerType) {
+    //     switch(customerType) {
+    //         case "Regular":
+    //             customer = new RegularCustomer();
+    //             break;
+    //         case "Mountain":
+    //             customer = new MountainCustomer();
+    //             break;
+    //         case "Delinquent":
+    //             customer = new DelinquentCustomer();
+    //             break;
+    //     }
+    // }
+    // public String generateMail() {
+    //     return customer.createMail();
+    // }
     
     public static void main(String[] args) {
-        CustomerMailApplication app = new CustomerMailApplication();
+        // CustomerMailApplication app = new CustomerMailApplication();
+
+        Customer myCustomer = null;
+
         Scanner inp = new Scanner(System.in);
         System.out.print("Please choose customer type 1. Regular, 2. Mountain, 3. Delinquent ");
         int type = inp.nextInt();
         switch(type) {
             case 1:
-                app.getCustomerTypeFromUser("Regular");
+                myCustomer = CustomerFactory.creatCustomer("Regular");
                 break;
             case 2:
-                app.getCustomerTypeFromUser("Mountain");
+                myCustomer = CustomerFactory.creatCustomer("Mountain");
                 break;
             case 3:
-                app.getCustomerTypeFromUser("Delinquent");
+                myCustomer = CustomerFactory.creatCustomer("Delinquent");
                 break;
             
         }
-        System.out.println(app.generateMail());        
+        System.out.println(myCustomer.createMail());  
+        
+        
     }
 }
